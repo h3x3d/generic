@@ -1,0 +1,10 @@
+{
+	"extends": "airbnb",
+	"env": {
+		"node": true
+	},
+	"rules": {
+		"no-shadow": [2, {"allow": ["rej", "res", "cb"]}],
+		"no-param-reassign": [2, {"props": false}]
+	}
+}

@@ -3,14 +3,17 @@
   "version": "0.0.1",
   "description": "Clojure-like generic functions for js",
   "author": "h3x3d <h3x3d@ya.ru>",
-  "engines": {"node": ">=5.0.0"},
+  "engines": {
+    "node": ">=5.0.0"
+  },
   "scripts": {
-  	"compile": "babel -d lib/ src/",
-  	"prepublish": "npm run compile"
+    "compile": "babel -d lib/ src/",
+    "lint": "eslint --fix ./src",
+    "prepublish": "npm run compile"
   },
   "repository": {
-  	"type": "git",
-  	"url":"git+https://github.com/h3x3d/generic.git"
+    "type": "git",
+    "url": "git+https://github.com/h3x3d/generic.git"
   },
   "bugs": {
     "url": "https://github.com/h3x3d/generic/issues"
@@ -19,7 +22,10 @@
   "main": "lib/index.js",
   "devDependencies": {
     "babel-cli": "^6.4.5",
-    "babel-preset-es2016-node5": "^1.1.2"
+    "babel-preset-es2016-node5": "^1.1.2",
+    "eslint": "^1.10.3",
+    "eslint-config-airbnb": "^4.0.0",
+    "eslint-plugin-react": "^3.16.1"
   },
   "private": true
 }

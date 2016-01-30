@@ -16,7 +16,7 @@ let ns = namespace();
 let area = defgeneric(ns, 'area', (fig) => fig.type);
 
 defmethod(ns, 'area', 'rect', (fig) => fig.w * fig.h);
-defmethod(ns, 'area', 'circle', (fig) => Math.pi * fig.r * fig.r);
+defmethod(ns, 'area', 'circle', (fig) => Math.PI * fig.r * fig.r);
 
 area(a);
 // => 200

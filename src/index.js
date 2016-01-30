@@ -8,7 +8,7 @@ export class GenericNotImplemented extends Error {
    * @param  {[type]} dispatch Dispatch value
    */
   constructor(method, dispatch = null) {
-    super(`Generic method '${method}'(${dispatch}) is not implemented`);
+    super(`Generic method '${method}'(${(dispatch ? dispatch : '')}) is not implemented`);
     Object.defineProperty(this, 'method', {
       value: method,
       writable: false,

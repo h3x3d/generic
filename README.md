@@ -6,14 +6,14 @@ Generic functions for js with namespace support
 
 ```javascript
 
-import {namespace, defgeneric, defmethod} from 'generic';
+import { namespace, defgeneric, defmethod } from 'generic';
 
-var a = {type: 'rect', w: 10, h: 20};
-var b = {type: 'circle', r: 10};
+const a = {type: 'rect', w: 10, h: 20};
+const b = {type: 'circle', r: 10};
 
-let ns = namespace();
+const ns = namespace();
 
-let area = defgeneric(ns, 'area', (fig) => fig.type);
+const area = defgeneric(ns, 'area', (fig) => fig.type);
 
 defmethod(ns, 'area', 'rect', (fig) => fig.w * fig.h);
 defmethod(ns, 'area', 'circle', (fig) => Math.PI * fig.r * fig.r);

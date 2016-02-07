@@ -43,6 +43,9 @@ export function defgeneric(ns, name, dispatcher) {
   const fn = (...args) => {
     const val = dispatcher.apply(null, args);
     if (!ns[name].has(val)) {
+      if (ns[name].has('_default')){
+        return ns[name].get('_default').apply(this, args);
+      }
       throw new GenericNotImplemented(name, val);
     }
     return ns[name].get(val).apply(this, args);

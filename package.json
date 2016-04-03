@@ -1,6 +1,6 @@
 {
   "name": "generic",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Clojure-like generic functions for js",
   "author": "h3x3d <h3x3d@ya.ru>",
   "engines": {
@@ -19,14 +19,24 @@
   "bugs": {
     "url": "https://github.com/h3x3d/generic/issues"
   },
+  "eslintConfig": {
+    "extends": "h3x3d"
+  },
+  "babel": {
+    "presets": [
+      "babel-preset-h3x3d"
+    ]
+  },
   "license": "UNLICENSED",
   "main": "lib/index.js",
   "devDependencies": {
-    "babel-cli": "^6.4.5",
-    "babel-preset-es2016-node5": "^1.1.2",
-    "eslint": "^1.10.3",
-    "eslint-config-airbnb": "^4.0.0",
-    "eslint-plugin-react": "^3.16.1"
+    "babel-preset-h3x3d": "h3x3d/babel-preset-h3x3d",
+    "eslint": "^2.6.0",
+    "eslint-config-h3x3d": "h3x3d/eslint-config-h3x3d"
+  },
+  "peerDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-runtime": "^6.6.1"
   },
   "private": true
 }

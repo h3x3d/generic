@@ -1,4 +1,6 @@
-const DEFAULT = '___DEFAULT___';
+const DEFAULT = Symbol('default');
+const IMPLKEY = Symbol('imlementations');
+
 
 function notImplemented(...args) {
   throw new Error(`Generic method not implemented for: ${JSON.stringify(args)}`);
@@ -9,13 +11,13 @@ function notImplemented(...args) {
  * @param  {Function} generic       Generic function to extend
  * @param  {Mixed}    dispatchValue DispatchValue
  * @param  {Function} imp           Method implementation
- * @return {Function}               Implementation
+ * @returns {Function}               Implementation
  */
 export function defmethod(generic, dispatchValue, imp) {
-  if (!generic._impls) {
+  if (!generic[IMPLKEY]) {
     throw new Error('Not a generic function');
   }
-  generic._impls.set(dispatchValue, imp);
+  generic[IMPLKEY].set(dispatchValue, imp);
   return imp;
 }
 
@@ -23,20 +25,23 @@ export function defmethod(generic, dispatchValue, imp) {
  * Creates new generic function
  * @param  {Function} dispatcher Dispatcher function
  * @param  {Function} def        Default implementation
- * @return {Function}            Created generic method
+ * @param  {Any}      th         This context for dispatcher function and method implementations
+ * @returns {Function}           Resulting generic function
  */
-export function defgeneric(dispatcher, def = notImplemented) {
+export function defgeneric(dispatcher, def = notImplemented, th = null) {
   const impls = new Map();
+
   impls.set(DEFAULT, def);
 
-  const fn = (...args) => {
-    const dispatch = dispatcher.apply(null, args);
-    return impls.has(dispatch) ?
-      impls.get(dispatch).apply(null, args) :
-      impls.get(DEFAULT).apply(null, args);
-  };
+  function f(...args) {
+    const dispatch = dispatcher.apply(th, args);
 
-  fn._impls = impls;
+    return impls.has(dispatch)
+      ? impls.get(dispatch).apply(th, args)
+      : impls.get(DEFAULT).apply(th, args);
+  }
 
-  return fn;
+  f[IMPLKEY] = impls;
+
+  return f;
 }

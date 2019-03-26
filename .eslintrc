@@ -1,0 +1,22 @@
+{
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018
+  },
+  "env": {
+    "es6": true
+  },
+  "extends": "eslint",
+  "rules": {
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "node/no-unsupported-features/es-syntax": ["error", {
+        "version": ">=10.0.0",
+        "ignores": ["modules"]
+    }],
+    "new-cap": [0],
+    "require-jsdoc": [0],
+    "quotes": ["error", "single"],
+    "no-invalid-this": [0],
+    "no-underscore-dangle": [0]
+  }
+}
